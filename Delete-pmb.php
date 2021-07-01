@@ -17,5 +17,3 @@ if (mysqli_query($connect,"delete from pmb_fakultas where id='$id'")) {
 } else {
   echo "Error deleting record: " . mysqli_error($conn);
 }
-
-?>

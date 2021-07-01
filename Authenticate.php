@@ -1,37 +1,35 @@
 <?php
-require ('helpers/PreventInjectionSQL.php');
-require ('config/Database.php');
+require('helpers/PreventInjectionSQL.php');
+require('config/Database.php');
 
 session_start();
 
-if(isset($_POST['do-login'])) {
+if (isset($_POST['do-login'])) {
 
 
-   $username = preventInjection($_POST['username']);
-   $password = preventInjection($_POST['password']);
+  $username = preventInjection($_POST['username']);
+  $password = preventInjection($_POST['password']);
 
-   $hash = sha1($password);
+  $hash = sha1($password);
 
-   //call method open connection
-   $connect = openConnection();
+  //call method open connection
+  $connect = openConnection();
 
-   $query = mysqli_query($connect,"select * from users where username = '$username' and password = '$hash'");
-   if(mysqli_num_rows($query) == 1) {
+  $query = mysqli_query($connect, "select * from users where username = '$username' and password = '$hash'");
+  if (mysqli_num_rows($query) == 1) {
 
 
-     while($obj = mysqli_fetch_object($query)){
+    while ($obj = mysqli_fetch_object($query)) {
 
-        $_SESSION['username'] = $obj->username;
-        $_SESSION['isLogin'] = true;
-     }
+      $_SESSION['username'] = $obj->username;
+      $_SESSION['isLogin'] = true;
+    }
 
-     header('Location:dashboard.php');
+    header('Location:dashboard.php');
+  } else {
 
-   } else {
-
-     // echo "salah";
-     $_SESSION['notify'] = 'Username atau Password Salah';
-     header('Location:index.php?notify=error');
-   }
-
+    // echo "salah";
+    $_SESSION['notify'] = 'Username atau Password Salah';
+    header('Location:index.php?notify=error');
+  }
 }

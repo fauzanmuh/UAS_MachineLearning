@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +9,19 @@
   <link rel="stylesheet" href="css/signin.css">
   <title>Login</title>
 </head>
+
 <body class="text-center">
   <form class="form-signin" method="post" action="authenticate.php">
     <img class="mb-4" src="img/bar-chart.svg" alt="" width="72" height="72">
     <h3 class="h3 mb-3 font-weight-normal">Login Simple Regression</h3>
     <?php if (isset($_GET['notify'])) {
 
-        if($_GET['notify'] == 'error') {
-          echo "Username atau password salah";
-        }
-
+      if ($_GET['notify'] == 'error') {
+        echo "Username atau password salah";
+      }
     } ?>
 
-        <label for="inputEmail" class="sr-only">Email address</label>
+    <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus name="username">
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
